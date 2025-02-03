@@ -68,3 +68,19 @@ Avec le projet d'API et la configuration rattachée à notre base Postgresql, on
 
 Configuration BDD `application.properties` > jdbc:postgresql://mydatabase:5432/db
 
+**1-5 Pourquoi avons-nous besoin d’un proxy inverse ?**
+
+On utilise un reverse proxy principalement pour des raisons de sécurité.
+
+On expose uniquement le serveur proxy, et non directement l'app.
+
+On peut gérer la répartition de charge si l'on avait plusieurs sources.
+
+\+ Gestion du SSL/TLS
+
+\+ Gestion de la configuration du serveur web
+
+Après avoir lancé Apache, on accède aux APIs via localhost :
+
+<ajouter capture>
+

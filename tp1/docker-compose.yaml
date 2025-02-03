@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+    backend:
+        build:
+          context: ./java
+          dockerfile: Dockerfile
+        networks:
+          - app-network
+        depends_on:
+          - mydatabase
+        ports:
+          - "8080:8080"
+
+    mydatabase:
+        image: postgres:14.1-alpine
+        environment:
+          POSTGRES_DB: db
+          POSTGRES_USER: usr
+          POSTGRES_PASSWORD: pwd
+        ports:
+          - "5433:5432"
+        volumes:
+          # - ./bdd/initial_data.sql:/docker-entrypoint-initdb.d
+          - ./bdd/data:/var/lib/postgresql/data
+        networks:
+          - app-network
+
+    # httpd:
+    #     build:
+    #     #TODO
+    #     ports:
+    #     #TODO
+    #     networks:
+    #       - app-network
+    #     depends_on:
+    #     #TODO
+
+networks:
+    app-network:
+      name: app-network

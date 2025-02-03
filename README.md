@@ -84,3 +84,25 @@ Après avoir lancé Apache, on accède aux APIs via localhost :
 
 <ajouter capture>
 
+**1-6 Pourquoi docker-compose est -il si important ?**
+
+Docker-compose est important car il permet de construire un système de manière cohérente et logique, réuni dans un seul fichier. Il permet d'être beaucoup plus rapide et d'avoir une vision d'ensemble sur les applicatifs d'un projet.
+
+**1-7 Documentez les commandes les plus importantes de docker-compose. 1-8 Documentez votre fichier docker-compose.**
+
+`docker-compose up -d` : build et run les conteneurs en tâche de fond.
+`docker-compose down -v` : arrêter et supprimer les conteneurs, ainsi que leurs volumes.
+`docker-compose logs -f` : afficher les logs.
+`docker-compose ps` : afficher l'état des conteneurs.
+`docker-compose exec <conteneur> ...` : exécuter une commande dans un conteneur en cours d'exécution.
+
+
+**1-9 Documentez vos commandes de publication et vos images publiées dans dockerhub.**
+
+`docker tag tp1_backend aglerean/tp1_backend:1.0` > Tag sur mon image backend (API sur les étudiants CPE au numéro de version 1.0).
+
+`docker push aglerean/tp1_backend:1.0` > Pousser mon image sur le docker hub.
+
+**1-10 Pourquoi mettons-nous nos images dans un référentiel en ligne ?**
+
+Pour pouvoir les récupérer sur n'importe quelle machine et permettre à d'autres personnes de pouvoir les utiliser.

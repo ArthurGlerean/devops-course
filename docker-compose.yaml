@@ -14,6 +14,8 @@ services:
           POSTGRES_DB: ${PSQL_DB}
           POSTGRES_USER: ${PSQL_USR}
           POSTGRES_PASSWORD: ${PSQL_PWD}
+        volumes:  
+          - ./bdd/data:/var/lib/postgresql/data
         networks:
           - app-network
 

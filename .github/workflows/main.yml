@@ -53,7 +53,7 @@ jobs:
           java-version: '21'
 
       - name: Build and test with Maven
-        run: mvn clean verifyyy
+        run: mvn clean verify
         working-directory: java/simple-api-student
 
   build-and-push-docker-image:

@@ -4,10 +4,13 @@ on:
     workflows: ["CI devops 2025"]
     types:
       - completed
+    branches:
+      - main
+      - develop
 
 jobs:
   build-and-push-docker-image:
-    if: ${{ github.ref == 'refs/heads/main' }}  #Pousser uniquement sur la branche `main` si le workflow précédent a réussi
+    if: ${{ github.ref == 'refs/heads/main' }} 
     runs-on: ubuntu-22.04
 
     steps:

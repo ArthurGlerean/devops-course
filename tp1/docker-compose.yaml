@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    backend:
+    myapi:
         build:
           context: ./java
           dockerfile: Dockerfile
@@ -26,15 +26,18 @@ services:
         networks:
           - app-network
 
-    # httpd:
-    #     build:
-    #     #TODO
-    #     ports:
-    #     #TODO
-    #     networks:
-    #       - app-network
-    #     depends_on:
-    #     #TODO
+    httpd:
+        image: httpd:2.4
+        container_name: myhttpd
+        ports:
+          - "80:80"
+        volumes:
+          - ./httpd/index.html:/usr/local/apache2/htdocs/index.html
+          - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+        depends_on:
+          - myapi
+        networks:
+          - app-network
 
 networks:
     app-network:

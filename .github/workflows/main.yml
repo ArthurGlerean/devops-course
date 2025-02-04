@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Build and analyze
-    runs-on: ubuntu-22-04 
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +40,6 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ArthurGlerean_devops-course
         working-directory: java/simple-api-student
 
-
   test-backend:
     runs-on: ubuntu-22.04
     steps:
@@ -61,31 +60,31 @@ jobs:
     needs: test-backend
     if: github.ref == 'refs/heads/main' && success()
     runs-on: ubuntu-22.04
-  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
       
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin      
-      
+
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
           context: ./java
-          tags:  ${{secrets.DOCKER_USER}}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  # Exécuter le push que si on est sur la branche main
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-simple-api:latest
+          push: true  # Pousser uniquement sur la branche `main`
 
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
           context: ./bdd
-          tags:  ${{secrets.DOCKER_USER}}/tp-devops-bdd:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-bdd:latest
+          push: true  # Pousser uniquement sur la branche `main`
   
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           context: ./httpd
-          tags:  ${{secrets.DOCKER_USER}}/tp-devops-httpd:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-httpd:latest
+          push: true  # Pousser uniquement sur la branche `main`

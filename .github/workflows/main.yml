@@ -25,5 +25,3 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify
         working-directory: java/simple-api-student
-
-        #aa

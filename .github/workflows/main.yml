@@ -10,6 +10,39 @@ on:
       - develop
 
 jobs:
+
+  build-and-push-docker-image:
+    needs: test-backend
+    runs-on: ubuntu-22.04
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+      
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DH_LOGIN }} -p ${{ secrets.DH_PWD }}      
+      
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./java
+          tags:  ${{secrets.DH_LOGIN}}/tp-devops-simple-api:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+  
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ./bdd
+          tags:  ${{secrets.DH_LOGIN}}/tp-devops-bdd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+  
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ./httpd
+          tags:  ${{secrets.DH_LOGIN}}/tp-devops-httpd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+
   test-backend:
     runs-on: ubuntu-22.04
     steps:

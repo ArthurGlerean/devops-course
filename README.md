@@ -180,3 +180,11 @@ Les images doivent être poussées pour pouvoir sauvegarder nos images et pouvoi
 
 **2-4 Document your quality gate configuration.**
 
+Ce job se déroule en 5 étapes:
+- 1: Récupération du code source via l'action 'checkout'
+- 2: Installation du JDK version 21
+- 3: Télécharge les dépendances Sonarqube et les mets en cache pour faciliter la CI/CD par la suite
+- 4: Télécharge les dépendances Maven et les mets en cache pour faciliter la CI/CD par la suite (si le pom.xml n'est pas changé, il réutilise les anciennes dépendances)
+- 5: Exécute l'analyse Sonarqube en utilisant le TOKEN du projet Sonar (renseignée via les variables sécuriées)
+
+![alt text](resources/image-7.png)

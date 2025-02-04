@@ -171,4 +171,12 @@ On a 3 étapes majeures:
 
 Pour les deux premières, on utilise des actions prédéfinies par Github. Pour la dernière, on se positionne sur le bon répertoire via l'indicateur 'working-directory' et on exécute la commande via 'run'.
 
+**2-3 For what purpose do we need to push docker images?**
+
+Les images doivent être poussées pour pouvoir sauvegarder nos images et pouvoir les réutiliser depuis n'importe quel environnement. De plus, ces images peuvent servir à d'autres développeurs si celles-ci sont accessibles en public.
+
+![alt text](resources/image-6.png)
+
+
+**2-4 Document your quality gate configuration.**
 

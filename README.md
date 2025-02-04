@@ -114,13 +114,12 @@ services:
           - "8080:8080"
 
     mydatabase:
+        env_file: ".env"
         image: postgres:14.1-alpine
         environment:
-          POSTGRES_DB: db
-          POSTGRES_USER: usr
-          POSTGRES_PASSWORD: pwd
-        ports:
-          - "5433:5432"
+          POSTGRES_DB: ${PSQL_DB}
+          POSTGRES_USER: ${PSQL_USR}
+          POSTGRES_PASSWORD: ${PSQL_PWD}
         volumes:
           # - ./bdd/initial_data.sql:/docker-entrypoint-initdb.d
           - ./bdd/data:/var/lib/postgresql/data

@@ -1,38 +1,28 @@
-version: '3.7'
-
 services:
     myapi:
         build:
           context: ./java
-          dockerfile: Dockerfile
         networks:
           - app-network
         depends_on:
           - mydatabase
-        ports:
-          - "8080:8080"
 
     mydatabase:
         env_file: ".env"
-        image: postgres:14.1-alpine
+        build:
+          context: ./bdd
         environment:
           POSTGRES_DB: ${PSQL_DB}
           POSTGRES_USER: ${PSQL_USR}
           POSTGRES_PASSWORD: ${PSQL_PWD}
-        volumes:
-          # - ./bdd/initial_data.sql:/docker-entrypoint-initdb.d
-          - ./bdd/data:/var/lib/postgresql/data
         networks:
           - app-network
 
     httpd:
-        image: httpd:2.4
-        container_name: myhttpd
+        build:
+          context: ./httpd
         ports:
           - "80:80"
-        volumes:
-          - ./httpd/index.html:/usr/local/apache2/htdocs/index.html
-          - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
         depends_on:
           - myapi
         networks:
@@ -40,4 +30,3 @@ services:
 
 networks:
     app-network:
-      name: app-network

@@ -158,7 +158,7 @@ Pour pouvoir les récupérer sur n'importe quelle machine et permettre à d'autr
 
 **2-1 What are testcontainers?**
 
-Ils sont issus d'une bibliothèque Java permettant d’exécuter des conteneurs Docker légers pour des tests d’intégration.
+Ils sont issus d'une bibliothèque Java permettant d’exécuter des conteneurs Docker légers pour des tests d’intégration et les tests unitaires.
 
 ![alt text](resources/image-5.png)
 

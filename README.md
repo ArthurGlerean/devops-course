@@ -82,7 +82,7 @@ On peut gérer la répartition de charge si l'on avait plusieurs sources.
 
 Après avoir lancé Apache, on accède aux APIs via localhost :
 
-<ajouter capture>
+![alt text](resources/image-4.png)
 
 **1-6 Pourquoi docker-compose est -il si important ?**
 
@@ -96,6 +96,54 @@ Docker-compose est important car il permet de construire un système de manière
 `docker-compose ps` : afficher l'état des conteneurs.
 `docker-compose exec <conteneur> ...` : exécuter une commande dans un conteneur en cours d'exécution.
 
+*Le docker-compose crée :*
+
+```yaml
+version: '3.7'
+
+services:
+    myapi:
+        build:
+          context: ./java
+          dockerfile: Dockerfile
+        networks:
+          - app-network
+        depends_on:
+          - mydatabase
+        ports:
+          - "8080:8080"
+
+    mydatabase:
+        image: postgres:14.1-alpine
+        environment:
+          POSTGRES_DB: db
+          POSTGRES_USER: usr
+          POSTGRES_PASSWORD: pwd
+        ports:
+          - "5433:5432"
+        volumes:
+          # - ./bdd/initial_data.sql:/docker-entrypoint-initdb.d
+          - ./bdd/data:/var/lib/postgresql/data
+        networks:
+          - app-network
+
+    httpd:
+        image: httpd:2.4
+        container_name: myhttpd
+        ports:
+          - "80:80"
+        volumes:
+          - ./httpd/index.html:/usr/local/apache2/htdocs/index.html
+          - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+        depends_on:
+          - myapi
+        networks:
+          - app-network
+
+networks:
+    app-network:
+      name: app-network
+```
 
 **1-9 Documentez vos commandes de publication et vos images publiées dans dockerhub.**
 

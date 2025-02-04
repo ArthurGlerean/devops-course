@@ -188,3 +188,11 @@ Ce job se déroule en 5 étapes:
 - 5: Exécute l'analyse Sonarqube en utilisant le TOKEN du projet Sonar (renseignée via les variables sécuriées)
 
 ![alt text](resources/image-7.png)
+
+**Bonus :**
+
+- Rajout de la ligne suivante pour permettre au job build-and-push-docker-image de s'exécuter uniquement depuis la branche main > `if: github.ref == 'refs/heads/main'`
+
+- Pour faire en sorte que le job build-and-push-docker-image s'exécute uniquement si les tests unitaires/intégration sont passés, il faut ajouter la ligne suivante > `needs: test-backend` ainsi que `if success()`
+
+Ce qui donne: `if: github.ref == 'refs/heads/main' && success()`

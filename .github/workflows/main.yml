@@ -59,6 +59,7 @@ jobs:
 
   build-and-push-docker-image:
     needs: test-backend
+    if: github.ref == 'refs/heads/main' && success()
     runs-on: ubuntu-22.04
   
     steps:

@@ -158,4 +158,17 @@ Pour pouvoir les récupérer sur n'importe quelle machine et permettre à d'autr
 
 **2-1 What are testcontainers?**
 
-Ces testcontainers permettent 
+Ils sont issus d'une bibliothèque Java permettant d’exécuter des conteneurs Docker légers pour des tests d’intégration.
+
+![alt text](resources/image-5.png)
+
+**2-2 Document your Github Actions configurations.**
+
+On a 3 étapes majeures:
+- une vérification des ressources
+- une installation du set-up JAVA/maven
+- une exécution des tests d'intégrations via la commande maven
+
+Pour les deux premières, on utilise des actions prédéfinies par Github. Pour la dernière, on se positionne sur le bon répertoire via l'indicateur 'working-directory' et on exécute la commande via 'run'.
+
+

@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Build and analyze
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22-04 
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,8 +73,8 @@ jobs:
         with:
           context: ./java
           tags:  ${{secrets.DOCKER_USER}}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
-  
+          push: ${{ github.ref == 'refs/heads/main' }}  # Exécuter le push que si on est sur la branche main
+
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:

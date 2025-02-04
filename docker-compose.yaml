@@ -8,7 +8,6 @@ services:
           - mydatabase
 
     mydatabase:
-        env_file: ".env"
         build:
           context: ./bdd
         environment:

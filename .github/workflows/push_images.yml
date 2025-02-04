@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push-docker-image:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} && ${{ github.ref == 'refs/heads/main' }}  # Pousser uniquement sur la branche `main` si le workflow précédent a réussi
+    if: ${{ github.ref == 'refs/heads/main' }}  #Pousser uniquement sur la branche `main` si le workflow précédent a réussi
     runs-on: ubuntu-22.04
 
     steps:

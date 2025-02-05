@@ -5,4 +5,4 @@
     pull: yes
     env_file: /home/admin/.env
     networks:
-      - name: "{{ docker_network_name }}"
+      - name: "app-network"

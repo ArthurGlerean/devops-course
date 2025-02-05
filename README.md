@@ -196,3 +196,31 @@ Ce job se déroule en 5 étapes:
 - Pour faire en sorte que le job build-and-push-docker-image s'exécute uniquement si les tests unitaires/intégration sont passés, il faut ajouter la ligne suivante > `needs: test-backend` ainsi que `if success()`
 
 Ce qui donne: `if: github.ref == 'refs/heads/main' && success()`
+
+## TP3 - Ansible
+
+**3-1 Document your inventory and base commands**
+
+Récapitulatif des commandes et actions effectuées:
+
+- Création d'un fichier de config Ansible (setup.yml):
+  - Ce fichier contient des informations, notamment :
+    - le nom d'utilisateur à utiliser
+    - le chemin d'accès vers ma clé SSH => permettant de ne pas le resaisir à chaque commande
+    - le nom d'hôte de ma machine distante
+- ansible all -i inventories/setup.yml -m ping
+  - On test uniquement le ping sur le serveur
+  - 'all' => Cible tous les hôtes définis dans le fichier setup.yml
+  - '-i inventories/setup.yml' => Spécifie le fichier d'inventaire utilisé
+  - '-m ping' => Utilise le module (-m) ping pour tester la connexion SSH au serveur
+- ansible all -i inventories/setup.yml -m setup -a "filter=ansible_distribution*"
+  - Récupérer les informations sur l'OS du serveur
+  - '-m setup' => Utilise le module setup, qui collecte et affiche les informations système (facteurs Ansible) des hôtes
+  - '-a "filter=ansible_distribution*"' => Filtre les résultats pour n'afficher que les variables qui commencent par ansible_distribution, ce qui permet de récupérer le nom et la version du système d'exploitation sur chaque hôte
+- ansible all -i inventories/setup.yml -m apt -a "name=apache2 state=absent" --become
+  - Suppression du serveur Apache installé précédement
+  - '-a "name=apache2 state=absent"' ⇒ Définit les arguments passés au module apt :
+    - 'name=apache2' ⇒ Spécifie le paquet à gérer (ici apache2, le serveur web Apache).
+    - 'state=absent' ⇒ Indique que le paquet doit être désinstallé s'il est présent sur le système.
+
+

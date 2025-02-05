@@ -10,6 +10,8 @@ services:
           POSTGRES_NAME: ${POSTGRES_NAME}
           POSTGRES_USER: ${POSTGRES_USER}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+          - "8080:8080"
 
     mydatabase:
         container_name: ${POSTGRES_NAME}
@@ -33,6 +35,14 @@ services:
           - myapi
         networks:
           - app-network
+
+    front:
+      build: 
+        context: ./front 
+      networks:
+        - app-network
+      ports:
+        - "8084:80"
 
 networks:
     app-network:

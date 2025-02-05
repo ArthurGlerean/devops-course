@@ -90,3 +90,10 @@ jobs:
           context: ./httpd
           tags: ${{ secrets.DOCKER_USER }}/tp-devops-httpd:${{ env.VERSION }}
           push: true  # Pousser l'image
+
+      - name: Build image and push front
+        uses: docker/build-push-action@v3
+        with:
+          context: ./front
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-front:${{ env.VERSION }}
+          push: true  # Pousser l'image

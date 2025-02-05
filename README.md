@@ -247,3 +247,5 @@ On a 4 rôles majeurs:
 Globalement dans chaque task, on pull l'image docker, on associe un network et éventuellement un port.
 
 ![alt text](resources/image-8.png)
+
+Front en cours

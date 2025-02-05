@@ -11,7 +11,8 @@ services:
           POSTGRES_USER: ${POSTGRES_USER}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-    ${POSTGRES_NAME}:
+    mydatabase:
+        container_name: ${POSTGRES_NAME}
         build:
           context: ./bdd
         environment:

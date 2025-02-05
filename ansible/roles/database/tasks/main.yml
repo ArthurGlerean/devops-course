@@ -6,7 +6,3 @@
       - name: "{{ docker_network_name }}"
     ports:
       - "5432:5432"
-    env:
-      POSTGRES_PASSWORD: pwd
-      POSTGRES_USER: usr
-      POSTGRES_DB: db

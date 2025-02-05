@@ -55,3 +55,38 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify
         working-directory: java/simple-api-student
+  
+  build-and-push-docker-image:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      - name: Extract version from pom.xml
+        id: get_version
+        run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f java/simple-api-student/pom.xml)" >> $GITHUB_ENV
+      
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin      
+
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./java
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-simple-api:${{ env.VERSION }}
+          push: true  # Pousser l'image
+
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ./bdd
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-bdd:${{ env.VERSION }}
+          push: true  # Pousser l'image
+
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ./httpd
+          tags: ${{ secrets.DOCKER_USER }}/tp-devops-httpd:${{ env.VERSION }}
+          push: true  # Pousser l'image

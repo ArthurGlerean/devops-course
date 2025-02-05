@@ -6,14 +6,18 @@ services:
           - app-network
         depends_on:
           - mydatabase
+        environment:
+          POSTGRES_NAME: ${POSTGRES_NAME}
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-    mydatabase:
+    ${POSTGRES_NAME}:
         build:
           context: ./bdd
         environment:
-          POSTGRES_DB: ${PSQL_DB}
-          POSTGRES_USER: ${PSQL_USR}
-          POSTGRES_PASSWORD: ${PSQL_PWD}
+          POSTGRES_DB: ${POSTGRES_DB}
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         volumes:  
           - ./bdd/data:/var/lib/postgresql/data
         networks:

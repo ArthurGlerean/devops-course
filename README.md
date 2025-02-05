@@ -236,3 +236,14 @@ Le playbook passe par plusieurs tâches, que sont:
 - installation du SDK docker pour l'environnement virtuel Python
 - vérification du bon fonctionnement de docker
 
+**3-3 Document your docker_container tasks configuration.**
+
+On a 4 rôles majeurs: 
+- network : s'occupe de créer un réseau docker nommé "app-network"
+- database : récupère l'image arthurglerean/tp-devops-bdd et monte un conteneur en se basant sur cette image
+- app : récupère l'image arthurglerean/tp-devops-simple-api et monte un conteneur en se basant sur cette image
+- proxy : récupère l'image arthurglerean/tp-devops-httpd et monte un conteneur en se basant sur cette image
+
+Globalement dans chaque task, on pull l'image docker, on associe un network et éventuellement un port.
+
+![alt text](resources/image-8.png)

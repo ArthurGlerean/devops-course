@@ -2,7 +2,7 @@
   community.docker.docker_container:
     name: myapi
     image: arthurglerean/tp-devops-simple-api
-    state: started
+    env_file: /home/admin/.env
     networks:
       - name: "{{ docker_network_name }}"
     ports:

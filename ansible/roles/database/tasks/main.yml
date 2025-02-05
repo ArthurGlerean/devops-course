@@ -1,0 +1,12 @@
+- name: Creation of the database and link to app-network
+  community.docker.docker_container:
+    name: mydatabase
+    image: "arthurglerean/tp-devops-bdd"
+    networks:
+      - name: "{{ docker_network_name }}"
+    ports:
+      - "5432:5432"
+    env:
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_USER: usr
+      POSTGRES_DB: db

@@ -1,0 +1,9 @@
+- name: Create the Spring app container
+  community.docker.docker_container:
+    name: myapi
+    image: arthurglerean/tp-devops-simple-api
+    state: started
+    networks:
+      - name: "{{ docker_network_name }}"
+    ports:
+      - "8080:8080"

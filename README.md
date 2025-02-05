@@ -224,3 +224,15 @@ Récapitulatif des commandes et actions effectuées:
     - 'state=absent' ⇒ Indique que le paquet doit être désinstallé s'il est présent sur le système.
 
 
+**3-2 Document your playbook**
+
+Le playbook passe par plusieurs tâches, que sont:
+- l'installation des paquets nécessaires
+- l'ajout de la clé gpg Docker pour télécharger les sources
+- téléchargement du repository docker suivant notre OS (ici Debian bookworm)
+- installation de docker
+- installation de python
+- création d'un environnement virtuel Python
+- installation du SDK docker pour l'environnement virtuel Python
+- vérification du bon fonctionnement de docker
+

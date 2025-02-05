@@ -1,0 +1,5 @@
+docker_network_name: "app-network"
+docker_username: "arthur.glerean@cpe.fr"
+docker_password: "Admin123456!"
+pguser: "usr"
+pgpassword: "pwd"

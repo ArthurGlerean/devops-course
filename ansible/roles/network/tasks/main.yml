@@ -1,3 +1,7 @@
-- name: Create a network
+- name: Create frontend network
   community.docker.docker_network:
-    name: "app-network"
+    name: "frontend-network"
+
+- name: Create backend network
+  community.docker.docker_network:
+    name: "backend-network"

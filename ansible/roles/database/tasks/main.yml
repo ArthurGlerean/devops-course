@@ -5,4 +5,4 @@
     pull: true
     env_file: /home/admin/.env
     networks:
-      - name: "app-network"
+      - name: "backend-network"

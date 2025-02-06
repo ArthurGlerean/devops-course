@@ -4,4 +4,4 @@
     image: "arthurglerean/tp-devops-front"
     pull: true
     networks:
-      - name: "app-network"
+      - name: "frontend-network"

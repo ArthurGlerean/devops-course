@@ -4,7 +4,7 @@
     image: "arthurglerean/tp-devops-httpd"
     pull: true
     networks:
-      - name: "app-network"
+      - name: "frontend-network"
     ports:
       - "80:80"
       - "8080:8080"

@@ -1,8 +1,8 @@
 - name: Create the httpd container
   community.docker.docker_container:
     name: httpd
-    image: arthurglerean/tp-devops-httpd:latest
-    pull: yes
+    image: "arthurglerean/tp-devops-httpd"
+    pull: true
     networks:
       - name: "app-network"
     ports:

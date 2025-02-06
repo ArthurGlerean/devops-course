@@ -1,8 +1,7 @@
 - name: Creation of the front and link to app-network
   community.docker.docker_container:
     name: front
-    image: "arthurglerean/tp-devops-front:0.0.1-SNAPSHOT"
-    pull: yes
-    env_file: /home/admin/.env
+    image: "arthurglerean/tp-devops-front"
+    pull: true
     networks:
       - name: "app-network"

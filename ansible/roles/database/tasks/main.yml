@@ -2,6 +2,7 @@
   community.docker.docker_container:
     name: mydatabase
     image: "arthurglerean/tp-devops-bdd"
+    pull: true
     env_file: /home/admin/.env
     networks:
       - name: "app-network"

@@ -1,1 +1,3 @@
 java/simple-api-student/target/*
+.env
+ansible/.env

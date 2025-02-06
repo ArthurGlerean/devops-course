@@ -1,8 +1,8 @@
 - name: Create the Spring app container
   community.docker.docker_container:
     name: myapi
-    image: "arthurglerean/tp-devops-simple-api"
-    pull: true
+    image: "arthurglerean/tp-devops-simple-api:latest"
+    pull: yes
     env_file: /home/admin/.env
     networks:
       - name: "frontend-network"

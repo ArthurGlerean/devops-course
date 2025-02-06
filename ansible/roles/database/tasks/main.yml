@@ -1,8 +1,8 @@
 - name: Creation of the database and link to app-network
   community.docker.docker_container:
     name: mydatabase
-    image: "arthurglerean/tp-devops-bdd"
-    pull: true
+    image: "arthurglerean/tp-devops-bdd:latest"
+    pull: yes
     env_file: /home/admin/.env
     networks:
       - name: "backend-network"
